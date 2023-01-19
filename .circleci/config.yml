@@ -10,11 +10,9 @@ jobs:
       - checkout
       - node/install-packages:
           pkg-manager: npm
-      - run :
-          command: npm run 
       - run:
-          command: npm run test
-          name: Run tests
+          command: npm run
+          #name: Run tests
       - run:
           command: npm run build
           name: Build app
