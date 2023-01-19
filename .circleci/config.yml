@@ -12,7 +12,7 @@ jobs:
           pkg-manager: npm
       - run:
           command: npm run
-          #name: Run tests
+          name: Run tests
       - run:
           command: npm run build
           name: Build app
