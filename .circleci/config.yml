@@ -11,7 +11,7 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo "hello world" # run the `echo` command
 
-# workflows:
-#   my-workflow:
-#     jobs:
-#       - hello-job
+workflows:
+  my-workflow:
+    jobs:
+      - hello-job
