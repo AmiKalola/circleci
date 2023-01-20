@@ -15,7 +15,7 @@ jobs:
             npm i
    
   deploy: 
-    executor: heroku/default
+    executor: node/default
     steps:
       - run: |
             ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
