@@ -15,7 +15,7 @@ jobs:
        pm2 restrt app.js    
            
 workflows:
-  my-workflow:
-    jobs:
-      - build: 
+ my-workflow:
+  jobs:
+    - build: 
           
