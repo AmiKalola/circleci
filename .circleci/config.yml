@@ -9,8 +9,6 @@ jobs:
           pkg-manager: npm
       - run:
           command: npm install
-      - run: 
-          command: npm app.js
       - run:
           command: rsync -zvhr -e ssh . ubuntu@3.80.208.171:/var/sites/dev/node-project/
       - run:
