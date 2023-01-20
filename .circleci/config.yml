@@ -9,10 +9,8 @@ jobs:
           pkg-manager: npm
       - run:
           command: npm install
-          name: Run tests
       - run: 
           command: npm app.js
-          name: Build app
       - persist_to_workspace:
           root: ~/project
           paths:
