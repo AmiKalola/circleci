@@ -1,5 +1,10 @@
 version: 2.1
 
+workflows:
+ my-workflow:
+  jobs:
+    - build: 
+
 jobs:
  build:
   executor: node/default
@@ -14,8 +19,5 @@ jobs:
        ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
        pm2 restrt app.js    
            
-workflows:
- my-workflow:
-  jobs:
-    - build: 
+
           
