@@ -11,10 +11,10 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm install
+          command: npm i
           name: Run tests
       - run:
-          command: npm start
+          command: npm app.js
           name: Build app
       - persist_to_workspace:
           root: ~/project
