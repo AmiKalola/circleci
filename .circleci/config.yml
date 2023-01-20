@@ -9,15 +9,15 @@ jobs:
  build:
   executor: node/default
   steps:
-    - checkout
-    - node/install-packages:
-        pkg-manager: npm
-    - run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
-        npm  insatll
-    - run:
-        command: rsync -zvhr -e ssh . ubuntu@34.238.115.96:/var/sites/dev/node-project/
-    - run: |
+    -checkout
+    -node/install-packages:
+       pkg-manager: npm
+    -run: |
+       ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
+       npm  insatll
+    -run:
+       command: rsync -zvhr -e ssh . ubuntu@34.238.115.96:/var/sites/dev/node-project/
+    -run: |
         ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
         pm2 restrt app.js    
            
