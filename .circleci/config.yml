@@ -3,10 +3,10 @@ jobs:
   build:
     executor: node/default
     steps:
-     - checkout
-     - run:
+      - checkout
+      - run:
         command: npm  insatll
-     - run:
+      - run:
           command: rsync -zvhr -e ssh . ubuntu@34.238.115.96:/var/sites/dev/node-project/
       - run:
           command: ssh ubuntu@34.238.115.96 'pm2 restart node-project'   
