@@ -11,11 +11,17 @@ jobs:
           command: npm install
       - run: 
           command: npm app.js
+      - run:
+          command: rsync -zvhr -e ssh . ubuntu@3.80.208.171:/var/sites/dev/node-project/
+      - run:
+          command: ssh ubuntu@3.80.208.171 'pm2 restart node-project'  
       - persist_to_workspace:
           root: ~/project
           paths:
             - .
+          
 workflows:
   my-workflow:
     jobs:
       - build_and_test:
+      
