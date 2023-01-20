@@ -1,21 +1,11 @@
-version: 2.1
-
+version: 2
 jobs:
-  build_and_test: # this can be any name you choose
-    executor: node/default # use the default executor defined within the orb
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run:
-          command: npm install  
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
-          
-  deploy:
+  build:
     executor: node/default
+    steps:
+      - run:
+          command: npm  insatll
+  deploy:
     steps:
       - run:
           command: rsync -zvhr -e ssh . ubuntu@3.80.208.171:/var/sites/dev/node-project/
@@ -25,11 +15,10 @@ jobs:
 workflows:
   my-workflow:
     jobs:
-      - build_and_test:
-      - deploy
+      - build:
+      - deploy:
           requires:
-            - build_and_test 
+            - build
           filters:
             branches:
               only: main
-      
