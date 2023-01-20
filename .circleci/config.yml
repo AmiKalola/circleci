@@ -1,22 +1,30 @@
 version: 2.1
-  
-workflows:
-  hello-world:
-    jobs:
-      - build
-      
+orbs:
+  node: circleci/node@5.0.2
+  heroku: circleci/heroku@1.2.6
+
 jobs:
- build:
-  executor:
-   name: node/default
-   steps:
-    - checkout
-    - run:
-        name: "Install project dependencies"
-        command: scp -r -o StrictHostKeyChecking=no * ubuntu@34.238.115.96:/home/ubuntu/ 
-    - run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
-        npm i
-    - run: |
-        ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
-        pm2 restart app.js
+  build_and_test: 
+    executor: node/default 
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run: |
+            ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
+            npm i
+
+
+  deploy: 
+    executor: heroku/default
+    steps:
+      - run: |
+            ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
+            pm2 restart app.js
+
+workflows:
+  test_my_app:
+    jobs:
+      - build_and_test
+      - deploy:
+          
