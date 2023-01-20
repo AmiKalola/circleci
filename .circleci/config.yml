@@ -3,22 +3,17 @@ jobs:
   build:
     executor: node/default
     steps:
-      - run:
-          command: npm  insatll
-  deploy:
-    steps:
-      - run:
+     - checkout
+     - run:
+        command: npm  insatll
+     - run:
           command: rsync -zvhr -e ssh . ubuntu@34.238.115.96:/var/sites/dev/node-project/
       - run:
-          command: ssh ubuntu@34.238.115.96 'pm2 restart node-project'
+          command: ssh ubuntu@34.238.115.96 'pm2 restart node-project'   
+  
           
 workflows:
   my-workflow:
     jobs:
       - build:
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: main
+          
