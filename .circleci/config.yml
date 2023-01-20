@@ -8,21 +8,26 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm install
-      - run:
-          command: rsync -zvhr -e ssh . ubuntu@3.80.208.171:/var/sites/dev/node-project/
-      - run:
-          command: ssh ubuntu@3.80.208.171 'pm2 restart node-project'  
+          command: npm install  
       - persist_to_workspace:
           root: ~/project
           paths:
             - .
           
+  deploy:
+    executor: node/default
+    steps:
+      - run:
+          command: rsync -zvhr -e ssh . ubuntu@3.80.208.171:/var/sites/dev/node-project/
+      - run:
+          command: ssh ubuntu@3.80.208.171 'pm2 restart node-project'
+          
 workflows:
   my-workflow:
     jobs:
       - build_and_test:
-      requires:
+      - deploy
+          requires:
             - build_and_test 
           filters:
             branches:
