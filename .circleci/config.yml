@@ -5,7 +5,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          ssh ubuntu@34.238.115.96\
+          ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
           npm  insatll
       - run:
           command: rsync -zvhr -e ssh . ubuntu@34.238.115.96:/var/sites/dev/node-project/
