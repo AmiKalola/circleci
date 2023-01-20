@@ -13,10 +13,10 @@ jobs:
           command: rsync -zvhr -e ssh . ubuntu@3.80.208.171:/var/sites/dev/node-project/
       - run:
           command: ssh ubuntu@3.80.208.171 'pm2 restart node-project'  
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
+#       - persist_to_workspace:
+#           root: ~/project
+#           paths:
+#             - .
           
 workflows:
   my-workflow:
