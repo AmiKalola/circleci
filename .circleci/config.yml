@@ -8,9 +8,8 @@ jobs:
     executor: node/default 
     steps:
       - checkout
-      - run: 
-          name: Install dependences
-          command: scp -r -o StrictHostKeyChecking=no * ubuntu@34.238.115.96:/home/ubuntu/ 
+       - node/install-packages:
+          pkg-manager: npm
       - run: |
             ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
             npm i
