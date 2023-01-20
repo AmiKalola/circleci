@@ -10,7 +10,7 @@ jobs:
       - run:
           command: npm install
           name: Run tests
-      - run:
+      - run: 
           command: npm app.js
           name: Build app
       - persist_to_workspace:
