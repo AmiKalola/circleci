@@ -14,9 +14,9 @@ jobs:
     - run:
         name: "Install project dependencies"
         command: scp -r -o StrictHostKeyChecking=no * ubuntu@34.238.115.96:/home/ubuntu/ 
-    - run:
+    - run: |
         ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
         npm i
-    - run:
+    - run: |
         ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
         pm2 restart app.js
