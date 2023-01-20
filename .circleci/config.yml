@@ -7,11 +7,11 @@ workflows:
 
 jobs:
  build:
-  executor: Linux VM
+  executor: node/default
   steps:
     - checkout
-#     - node/install-packages:
-#         pkg-manager: npm
+    - node/install-packages:
+        pkg-manager: npm
     - run: |
         ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
         npm  insatll
