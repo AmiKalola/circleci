@@ -22,4 +22,9 @@ workflows:
   my-workflow:
     jobs:
       - build_and_test:
+      requires:
+            - build_and_test 
+          filters:
+            branches:
+              only: main
       
