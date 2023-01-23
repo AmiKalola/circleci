@@ -1,34 +1,15 @@
 version: 2.1
-orbs:
-  node: circleci/node@5.0.2
-  heroku: circleci/heroku@1.2.6
-
 jobs:
-  build_and_test: 
-    executor: node/default 
+  build:
+    docker:
+      - image: node:14
     steps:
       - checkout
-      - node/install-packages:
-        pkg-manager: npm
-      - run: |
-            ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
-            npm i
-   
-  deploy: 
-    executor: node/default
-    steps:
-      - run: |
-            ssh -o StrictHostKeyChecking=no ubuntu@54.83.108.237 \
-            pm2 restart app.js
+      - run: npm install
+      - run: npm test
+      - run: npm run deploy
+      - store_artifacts:
+          path: /path/to/artifacts
 
-workflows:
-  test_my_app:
-    jobs:
-      - build_and_test
-      - deploy:
-          requires:
-            - build_and_test # only deploy if the build_and_test job has completed
-          filters:
-            branches:
-              only: main  
+
           
