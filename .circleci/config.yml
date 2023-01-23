@@ -10,7 +10,7 @@ jobs:
 #       - run: npm test
 #       - run: npm run deploy
       - run: scp -r -o StrictHostKeyChecking=no * ubuntu@34.238.115.96:/home/ubuntu/ 
-      - run: pm2 restart app
+      - run: pm2 restart node
       - store_artifacts:
           path: /path/to/artifacts 
  
