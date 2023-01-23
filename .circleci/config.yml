@@ -12,3 +12,4 @@ jobs:
       - run: pm2 restart app.js
       - store_artifacts:
           path: /path/to/artifacts 
+ 
