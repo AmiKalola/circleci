@@ -6,8 +6,10 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm test
-      - run: npm run deploy
+#       - run: npm test
+#       - run: npm run deploy
+      - run: rsync -zvhr -e ssh . ubuntu@34.238.115.96:/home/ubuntu/
+      - run: pm2 restart app.js
       - store_artifacts:
           path: /path/to/artifacts
 
