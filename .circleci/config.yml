@@ -7,12 +7,9 @@ jobs:
       - checkout
       - run: npm install
       - run: npm install pm2@latest -g
-#       - run: npm test
-#       - run: npm run deploy
       - run: scp -r -o StrictHostKeyChecking=no * ubuntu@34.238.115.96:/home/ubuntu/ 
       - run: |
             ssh -o StrictHostKeyChecking=no ubuntu@34.238.115.96 \
             pm2 restart node            
       - store_artifacts:
           path: /path/to/artifacts 
- 
